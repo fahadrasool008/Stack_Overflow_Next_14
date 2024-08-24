@@ -6,7 +6,7 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 import "./globals.css";
-import { ThemeProvider } from "../context/ThemeContext";
+// import { ThemeProvider } from "../context/ThemeContext";
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
@@ -18,7 +18,8 @@ export default function RootLayout({ children }) {
           <SignedIn>
             <UserButton />
           </SignedIn>
-          <ThemeProvider>{children}</ThemeProvider>
+          {children}
+          {/* <ThemeProvider>{children}</ThemeProvider> */}
         </body>
       </html>
     </ClerkProvider>
