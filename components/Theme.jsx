@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 import {
   Menubar,
@@ -12,7 +12,7 @@ import Image from "next/image";
 import { themes } from "../constants/constants";
 
 const Theme = () => {
-  const { mode, setMode } = useContext(ThemeContext);
+  const { mode, active, setActive, setMode } = useContext(ThemeContext);
   return (
     <Menubar className="relative border-none bg-transparent shadow-none">
       <MenubarMenu>
@@ -41,7 +41,10 @@ const Theme = () => {
               key={index}
               className="flex gap-4 hover:cursor-pointer focus:bg-light-700 dark:focus:bg-dark-400"
               onClick={() => {
-                setMode(item.value);
+                setMode(() => {
+                  setActive(item.value);
+                  return item.value;
+                });
                 if (item.value !== "system") {
                   localStorage.theme = item.value;
                 } else {
@@ -54,10 +57,10 @@ const Theme = () => {
                 width={16}
                 height={16}
                 alt="icon"
-                className={`${mode === item.value && "active-theme"}`}
+                className={`${active === item.value && "active-theme"}`}
               />
               <p
-                className={`body-semibold text-light-500 ${mode === item.value ? "text-primary-500" : "text-dark100_light900"}`}
+                className={`body-semibold text-light-500 ${active === item.value ? "text-primary-500" : "text-dark100_light900"}`}
               >
                 {item.label}
               </p>

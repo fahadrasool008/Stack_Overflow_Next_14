@@ -6,6 +6,11 @@
 body {
   font-family: "Inter", sans-serif;
 }
+
+*::-webkit-scrollbar {
+  appearance: none;
+  display: none;
+}
 @layer utilities {
   .flex-center {
     @apply flex justify-center items-center;
@@ -45,7 +50,7 @@ body {
     @apply min-h-full dark:bg-dark-400 bg-light-800 text-light-5;
   }
   .no-focus {
-    @apply focus-visible:ring-0 focus-visible:ring-transparent focus;
+    @apply focus-visible:ring-0 focus-visible:ring-transparent;
   }
   .active-theme {
     filter: invert(53%) sepia(98%) saturate(3332%) hue-rotate(0deg)

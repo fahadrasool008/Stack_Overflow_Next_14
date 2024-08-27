@@ -5,6 +5,12 @@ export const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
   const [mode, setMode] = useState("");
+  const [active, setActive] = useState(() => {
+    if (typeof window !== "undefined") {
+      const storedItem = localStorage.getItem("theme") || "system";
+      return storedItem;
+    }
+  });
 
   const changeTheme = () => {
     if (
@@ -25,7 +31,7 @@ export const ThemeProvider = ({ children }) => {
   }, [mode]);
 
   return (
-    <ThemeContext.Provider value={{ mode, setMode }}>
+    <ThemeContext.Provider value={{ mode, active, setActive, setMode }}>
       {children}
     </ThemeContext.Provider>
   );
@@ -35,16 +41,3 @@ export function useTheme() {
   const context = useContext(ThemeContext);
   return context;
 }
-
-/*
-(prev) => {
-    if (typeof window !== "undefined") {
-      const storedTheme =
-        localStorage.getItem("theme") ||
-        window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light";
-      return storedTheme;
-    }
-  }
-    */
