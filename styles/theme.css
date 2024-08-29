@@ -15,6 +15,12 @@
   .background-light800_darkgradient {
     @apply bg-light-800 dark:dark-gradient;
   }
+<<<<<<< Updated upstream
+=======
+  .background-light700_darkgradient {
+    @apply bg-light-700 dark:dark-gradient;
+  }
+>>>>>>> Stashed changes
   .background-light800_dark400 {
     @apply bg-light-800 dark:bg-dark-400 !important;
   }
