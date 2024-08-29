@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { Input } from "./ui/input";
+import Filter from "./filter";
 
 const LocalSearchBar = () => {
   return (
@@ -20,6 +21,7 @@ const LocalSearchBar = () => {
           className="paragraph-regular no-focus placeholder background-light750_darkgradient caret-slate-500 shadow-none outline-none"
         />
       </div>
+      <Filter />
     </div>
   );
 };
