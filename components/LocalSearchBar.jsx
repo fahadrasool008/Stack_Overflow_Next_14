@@ -1,12 +1,10 @@
 import Image from "next/image";
 import React from "react";
-import { Input } from "../components/ui/input";
+import { Input } from "./ui/input";
 
-const GlobalSearch = ({ style }) => {
+const LocalSearchBar = () => {
   return (
-    <div
-      className={style ?? "relative flex w-full max-w-[600px] max-lg:hidden"}
-    >
+    <div className="relative flex w-full max-w-[1030px]">
       <div className="background-light750_darkgradient relative flex min-h-[56px] grow items-center gap-3 rounded-xl px-4">
         <Image
           src="/assets/icons/search.svg"
@@ -26,4 +24,4 @@ const GlobalSearch = ({ style }) => {
   );
 };
 
-export default GlobalSearch;
+export default LocalSearchBar;
