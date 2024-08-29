@@ -7,11 +7,12 @@ import { SignedOut } from "@clerk/nextjs";
 import { Button } from "./ui/button";
 import { sidebarLinks } from "../constants/constants";
 import { usePathname } from "next/navigation";
+import { SheetIcon, X } from "lucide-react";
 
 const NavContent = () => {
   const pathname = usePathname();
   return (
-    <section className="flex h-full flex-col gap-4 pt-6">
+    <section className="flex flex-1 flex-col gap-4 pt-6">
       {sidebarLinks.map((item, index) => {
         const activeLink =
           pathname.includes(item.route && item.route.length > 1) ||
@@ -53,7 +54,7 @@ const MobileNav = () => {
       </SheetTrigger>
       <SheetContent
         side="left"
-        className="bg: background-light900_dark200 border-none outline-none"
+        className="bg: background-light900_dark200 flex max-h-screen flex-col border-none outline-none"
       >
         <Link href="/" className="flex items-center gap-1">
           <Image
