@@ -15,6 +15,9 @@
   .background-light800_darkgradient {
     @apply bg-light-800 dark:dark-gradient;
   }
+  .background-light750_dark300 {
+    @apply bg-light-750 dark:bg-dark-300;
+  }
   .background-light750_darkgradient {
     @apply bg-light-750 dark:dark-gradient;
   }
