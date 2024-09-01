@@ -8,6 +8,11 @@ body {
   overflow: auto;
 }
 
+.tox-statusbar__right-container,
+.tox-statusbar__path {
+  display: none !important;
+}
+
 *::-webkit-scrollbar {
   appearance: none;
   display: none;
