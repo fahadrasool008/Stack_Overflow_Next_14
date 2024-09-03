@@ -2,7 +2,6 @@ import React from "react";
 import RenderTag from "./RenderTag";
 import Metric from "./Metric";
 import { formatNumber, TimeFormattor } from "../lib/utils";
-import { create } from "domain";
 
 const AllQuestions = ({
   _id,
@@ -15,19 +14,19 @@ const AllQuestions = ({
   createdAt,
 }) => {
   return (
-    <div className="flex w-full background-light750_darkgradient flex-col gap-0 rounded-xl px-10 py-8">
-      <p className="small-regular hidden max-sm:flex text-dark400_light500">
+    <div className="background-light750_darkgradient flex w-full flex-col gap-0 rounded-xl px-10 py-8">
+      <p className="small-regular text-dark400_light500 hidden max-sm:flex">
         {TimeFormattor(createdAt)}
       </p>
-      <h3 className="sm:h3-semibold base-semibold line-clamp-1 text-dark300_light900">
+      <h3 className="sm:h3-semibold base-semibold text-dark300_light900 line-clamp-1">
         {title}
       </h3>
-      <div className="flex gap-3 flex-wrap mt-4">
+      <div className="mt-4 flex flex-wrap gap-3">
         {tags.map((tag) => (
-          <RenderTag _id={tag._id} name={tag.name} />
+          <RenderTag key={tag}  _id={tag._id} name={tag.name} />
         ))}
       </div>
-      <div className="flex-between gap-3 mt-7 w-full flex-wrap">
+      <div className="flex-between mt-7 w-full flex-wrap gap-3">
         <Metric
           imageUrl="/assets/icons/avatar.svg"
           alt="author"
@@ -37,7 +36,7 @@ const AllQuestions = ({
           isAuthor={true}
           href="/"
         />
-        <div className="flex items-center justify-between gap-2 flex-wrap">
+        <div className="flex flex-wrap items-center justify-between gap-2">
           <Metric
             imageUrl="/assets/icons/upvote.svg"
             alt="upvote"
