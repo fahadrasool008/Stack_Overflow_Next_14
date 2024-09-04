@@ -127,6 +127,7 @@
 //   res.json({});
 // }
 
+import { buffer } from "stream/consumers";
 import { Webhook } from "svix";
 
 // Define the POST handler for this route
@@ -141,9 +142,8 @@ export async function POST(req) {
 
   // Get the headers and body
   const headers = req.headers;
-  const payload = await req.json();
-  const body = JSON.stringify(payload);
-  console.log(body); // Use .json() to parse the body correctly
+  const payload = (await buffer(req)).toString();
+  console.log(payload); // Use .json() to parse the body correctly
 
   // Extract Svix headers
   const svix_id = headers.get("svix-id");
