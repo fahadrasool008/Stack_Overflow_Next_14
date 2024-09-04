@@ -41,6 +41,7 @@ export async function POST(req) {
 
   // Verify the payload with the headers
   try {
+    console.log("try payload svix");
     evt = wh.verify(body, {
       "svix-id": svix_id,
       "svix-timestamp": svix_timestamp,
