@@ -41,7 +41,7 @@ export async function POST(req) {
   if (eventType === "user.created") {
     console.log("user created.....");
     const { id, email_addresses, image_url, username, first_name, last_name } =
-      eventType.data;
+      evt.data;
 
     await createUser({
       clerkId: id,
@@ -54,7 +54,7 @@ export async function POST(req) {
 
   if (eventType === "user.updated") {
     const { id, email_addresses, image_url, username, first_name, last_name } =
-      eventType.data;
+      evt.data;
 
     await updateUser({
       clerkId: id,
@@ -69,7 +69,7 @@ export async function POST(req) {
   }
 
   if (eventType === "user.deleted") {
-    const { id } = eventType.data;
+    const { id } = evt.data;
 
     await deleteUser({
       clerkId: id,
