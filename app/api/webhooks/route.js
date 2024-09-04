@@ -142,7 +142,7 @@ export async function POST(req) {
   // Get the headers and body
   const headers = req.headers;
   const payload = await req.json();
-  console.log(payload); // Use .json() to parse the body correctly
+  console.log(payload.json()); // Use .json() to parse the body correctly
 
   // Extract Svix headers
   const svix_id = headers.get("svix-id");
