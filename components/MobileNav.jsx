@@ -7,7 +7,6 @@ import { SignedOut } from "@clerk/nextjs";
 import { Button } from "./ui/button";
 import { sidebarLinks } from "../constants/constants";
 import { usePathname } from "next/navigation";
-import { SheetIcon, X } from "lucide-react";
 
 const NavContent = () => {
   const pathname = usePathname();
