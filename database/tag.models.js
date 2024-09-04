@@ -27,6 +27,6 @@ const TagSchema = new Schema({
   },
 });
 
-const Tag = models.Tag || model(Tag, TagSchema);
+const Tag = models.Tag || model("Tag", TagSchema);
 
 export default Tag;

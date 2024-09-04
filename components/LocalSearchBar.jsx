@@ -20,7 +20,6 @@ const LocalSearchBar = () => {
           <Input
             type="text"
             placeholder="Local search"
-            value=""
             className="paragraph-regular no-focus placeholder background-light750_darkgradient caret-slate-500 shadow-none outline-none"
           />
         </div>

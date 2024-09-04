@@ -3,10 +3,11 @@ import React from "react";
 import { Button } from "../../../components/ui/button";
 import LocalSearchBar from "../../../components/LocalSearchBar";
 import NoDataFound from "../../../components/No-Data-Found";
-import { questions } from "../../../lib/utils";
 import AllQuestions from "../../../components/AllQuestions";
+import { getQuestions } from "../../../lib/actions/user.actions";
 
-const Home = () => {
+const Home = async () => {
+  const questions2 = await getQuestions();
   return (
     <>
       <div className="flex flex-col-reverse justify-between gap-4 !overflow-auto max-lg:mt-[36px] sm:flex-row sm:items-center ">
@@ -21,8 +22,8 @@ const Home = () => {
         <LocalSearchBar />
       </div>
       <div className="mt-10 flex w-full flex-col gap-6">
-        {questions.length > 0 ? (
-          questions.map((item) => (
+        {questions2.length > 0 ? (
+          questions2.map((item) => (
             <AllQuestions
               key={item._id}
               _id={item._id}

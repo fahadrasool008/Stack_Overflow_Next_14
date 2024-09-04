@@ -18,10 +18,13 @@ import {
   FormMessage,
 } from "../../components/ui/Form";
 import { PostQuestion } from "../../lib/actions/Server.Actions";
+import { useRouter, usePathname } from "next/navigation";
 
-const Question = () => {
+const Question = ({ clerkId }) => {
   const [submitting, setSubmitting] = useState(false);
   const questionMode = "ask";
+  const router = useRouter();
+  const pathname = usePathname();
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -31,18 +34,21 @@ const Question = () => {
     },
   });
 
-  function onSubmit(values) {
+  async function onSubmit(values) {
     try {
       setSubmitting(true);
-      PostQuestion();
+      await PostQuestion({
+        title: values.title,
+        explanation: values.explanation,
+        tags: values.tags,
+        author: JSON.parse(clerkId),
+        path: pathname,
+      });
+      router.push("/");
     } catch (e) {
     } finally {
       setSubmitting(false);
     }
-  }
-  function onEditorChange(e) {
-    console.log(e.value);
-    // form.setValue('explanation',)
   }
 
   function onKeyDown(e, field) {
@@ -90,7 +96,7 @@ const Question = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="mt-5 flex flex-col w-full gap-6"
+        className="mt-5 flex w-full flex-col gap-6"
       >
         <FormField
           control={form.control}
@@ -99,7 +105,7 @@ const Question = () => {
             <FormItem>
               <FormLabel className="paragraph-semibold text-dark400_light800">
                 Question Title{" "}
-                <span className="text-primary-500 text-lg">*</span>
+                <span className="text-lg text-primary-500">*</span>
               </FormLabel>
               <FormControl>
                 <Input
@@ -123,7 +129,7 @@ const Question = () => {
             <FormItem>
               <FormLabel className="paragraph-semibold text-dark400_light800">
                 Detailed explanation of your problem?{" "}
-                <span className="text-primary-500 text-lg">*</span>
+                <span className="text-lg text-primary-500">*</span>
               </FormLabel>
               <FormControl>
                 <FormEditor field={field} />
@@ -142,7 +148,7 @@ const Question = () => {
           render={({ field }) => (
             <FormItem>
               <FormLabel className="paragraph-semibold text-dark400_light800">
-                Tags <span className="text-primary-500 text-lg">*</span>
+                Tags <span className="text-lg text-primary-500">*</span>
               </FormLabel>
               <FormControl>
                 <>
@@ -155,7 +161,7 @@ const Question = () => {
                       {field.value.map((tag) => (
                         <Badge
                           key={tag}
-                          className="flex gap-4 capitalize text-light400_light500 background-light750_darkgradient rounded-md paragraph-regular px-3 py-2 items-center justify-between"
+                          className="text-light400_light500 background-light750_darkgradient paragraph-regular flex items-center justify-between gap-4 rounded-md px-3 py-2 capitalize"
                         >
                           {tag}
                           <Image
@@ -164,7 +170,7 @@ const Question = () => {
                             width={12}
                             height={12}
                             onClick={(e) => onCloseDown(tag, field)}
-                            className="cursor-pointer invert-0 dark:invert object-contain"
+                            className="cursor-pointer object-contain invert-0 dark:invert"
                           />
                         </Badge>
                       ))}
@@ -182,7 +188,7 @@ const Question = () => {
         />
         <Button
           type="submit"
-          className="primary-gradient paragraph-semibold text-light-800 max-w-44 w-full min-h-11 self-end mt-8 "
+          className="primary-gradient paragraph-semibold mt-8 min-h-11 w-full max-w-44 self-end text-light-800 "
           disabled={submitting}
         >
           {submitting
