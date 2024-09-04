@@ -127,7 +127,7 @@
 //   res.json({});
 // }
 
-import { buffer } from "stream/consumers";
+import { buffer } from "micro";
 import { Webhook } from "svix";
 
 // Define the POST handler for this route
