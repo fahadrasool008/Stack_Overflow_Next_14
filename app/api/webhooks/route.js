@@ -22,7 +22,7 @@ export async function POST(req) {
   const body = await req.text();
   console.log(body);
 
-  const sivx = new Webhook(webhookSecret);
+  const sivx = new Webhook(WEBHOOK_SECRET);
 
   let evt;
 
