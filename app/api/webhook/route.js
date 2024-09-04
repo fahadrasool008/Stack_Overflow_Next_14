@@ -56,6 +56,7 @@ exports.POST = async (req) => {
   const eventType = evt.type;
 
   if (eventType === "user.created") {
+    console.log("User created...");
     const { id, email_addresses, image_url, username, first_name, last_name } =
       eventType.data;
 
