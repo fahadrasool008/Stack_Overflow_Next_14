@@ -141,7 +141,8 @@ export async function POST(req) {
 
   // Get the headers and body
   const headers = req.headers;
-  const payload = await req.json(); // Use .json() to parse the body correctly
+  const payload = await req.json();
+  console.log(payload); // Use .json() to parse the body correctly
 
   // Extract Svix headers
   const svix_id = headers.get("svix-id");
@@ -160,7 +161,7 @@ export async function POST(req) {
 
   // Attempt to verify the incoming webhook
   try {
-    evt = wh.verify(payload, {
+    evt = await wh.verify(payload, {
       "svix-id": svix_id,
       "svix-timestamp": svix_timestamp,
       "svix-signature": svix_signature,
