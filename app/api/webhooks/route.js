@@ -127,63 +127,96 @@
 //   res.json({});
 // }
 
-import { buffer } from "micro";
 import { Webhook } from "svix";
 
-// Define the POST handler for this route
+const webhookSecret = "whsec_bJKN+QnEk6au8s5y46plxrjIOyTEOlxs";
+
 export async function POST(req) {
-  // Your secret key should be stored in environment variables
-  const WEBHOOK_SECRET = "whsec_bJKN+QnEk6au8s5y46plxrjIOyTEOlxs"; // Change to the environment variable
+  const svix_id = req.headers.get("svix-id") ?? "";
+  const svix_timestamp = req.headers.get("svix-timestamp") ?? "";
+  const svix_signature = req.headers.get("svix-signature") ?? "";
 
-  if (!WEBHOOK_SECRET) {
-    console.error("WEBHOOK_SECRET is not defined.");
-    return new Response("Internal Server Error", { status: 500 });
-  }
+  const body = await req.text();
+  console.log(body);
 
-  // Get the headers and body
-  const headers = req.headers;
-  const payload = (await buffer(req)).toString();
-  console.log(payload); // Use .json() to parse the body correctly
+  const sivx = new Webhook(webhookSecret);
 
-  // Extract Svix headers
-  const svix_id = headers.get("svix-id");
-  const svix_timestamp = headers.get("svix-timestamp");
-  const svix_signature = headers.get("svix-signature");
+  let msg;
 
-  // Check for required headers
-  if (!svix_id || !svix_timestamp || !svix_signature) {
-    return new Response("Error occurred -- no svix headers", { status: 400 });
-  }
-
-  // Create a new Svix instance with your secret
-  const wh = new Webhook(WEBHOOK_SECRET);
-
-  let evt;
-
-  // Attempt to verify the incoming webhook
   try {
-    evt = await wh.verify(payload, {
+    msg = sivx.verify(body, {
       "svix-id": svix_id,
       "svix-timestamp": svix_timestamp,
       "svix-signature": svix_signature,
     });
   } catch (err) {
-    console.error("Error verifying webhook:", err.message);
-    return new Response("Error verifying webhook", { status: 400 });
+    return new Response("Bad Request", { status: 400 });
   }
 
-  // Process the verified payload
-  const { id } = evt.data;
-  const eventType = evt.type;
-  console.log(`Webhook with an ID of ${id} and type of ${eventType}`);
-  console.log("Webhook body:", evt.data);
+  console.log(msg);
 
-  // Respond with success
-  return new Response(
-    JSON.stringify({ success: true, message: "Webhook received" }),
-    {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    }
-  );
+  // Rest
+
+  return new Response("OK", { status: 200 });
 }
+
+// import { buffer } from "micro";
+// import { Webhook } from "svix";
+
+// // Define the POST handler for this route
+// export async function POST(req) {
+//   // Your secret key should be stored in environment variables
+//   const WEBHOOK_SECRET = "whsec_bJKN+QnEk6au8s5y46plxrjIOyTEOlxs"; // Change to the environment variable
+
+//   if (!WEBHOOK_SECRET) {
+//     console.error("WEBHOOK_SECRET is not defined.");
+//     return new Response("Internal Server Error", { status: 500 });
+//   }
+
+//   // Get the headers and body
+//   const headers = req.headers;
+//   const payload = (await buffer(req)).toString();
+//   console.log(payload); // Use .json() to parse the body correctly
+
+//   // Extract Svix headers
+//   const svix_id = headers.get("svix-id");
+//   const svix_timestamp = headers.get("svix-timestamp");
+//   const svix_signature = headers.get("svix-signature");
+
+//   // Check for required headers
+//   if (!svix_id || !svix_timestamp || !svix_signature) {
+//     return new Response("Error occurred -- no svix headers", { status: 400 });
+//   }
+
+//   // Create a new Svix instance with your secret
+//   const wh = new Webhook(WEBHOOK_SECRET);
+
+//   let evt;
+
+//   // Attempt to verify the incoming webhook
+//   try {
+//     evt = await wh.verify(payload, {
+//       "svix-id": svix_id,
+//       "svix-timestamp": svix_timestamp,
+//       "svix-signature": svix_signature,
+//     });
+//   } catch (err) {
+//     console.error("Error verifying webhook:", err.message);
+//     return new Response("Error verifying webhook", { status: 400 });
+//   }
+
+//   // Process the verified payload
+//   const { id } = evt.data;
+//   const eventType = evt.type;
+//   console.log(`Webhook with an ID of ${id} and type of ${eventType}`);
+//   console.log("Webhook body:", evt.data);
+
+//   // Respond with success
+//   return new Response(
+//     JSON.stringify({ success: true, message: "Webhook received" }),
+//     {
+//       status: 200,
+//       headers: { "Content-Type": "application/json" },
+//     }
+//   );
+// }
