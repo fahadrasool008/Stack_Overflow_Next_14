@@ -53,7 +53,7 @@ export async function POST(req) {
     });
   }
 
-  const eventType = evt.type;
+  const eventType = evt.type.toString();
 
   if (eventType === "user.created") {
     console.log("user created.....");
