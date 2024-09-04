@@ -1,13 +1,13 @@
 /* eslint-disable camelcase */
-const { Webhook } = require("svix");
-const { headers } = require("next/headers");
-const {
+import { Webhook } from "svix";
+import { headers } from "next/headers";
+import {
   updateUser,
   createUser,
   deleteUser,
-} = require("../../../lib/actions/user.actions");
+} from "../../../lib/actions/user.actions";
 
-exports.POST = async (req) => {
+export async function POST(req) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the endpoint
   const WEBHOOK_SECRET = process.env.NEXT_PUBLIC_CLERK_WEBHOOK_SECRET;
 
@@ -94,4 +94,4 @@ exports.POST = async (req) => {
   }
 
   return new Response("", { status: 200 });
-};
+}
