@@ -132,7 +132,7 @@ import { Webhook } from "svix";
 // Define the POST handler for this route
 export async function POST(req) {
   // Your secret key should be stored in environment variables
-  const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET; // Change to the environment variable
+  const WEBHOOK_SECRET = "whsec_bJKN+QnEk6au8s5y46plxrjIOyTEOlxs"; // Change to the environment variable
 
   if (!WEBHOOK_SECRET) {
     console.error("WEBHOOK_SECRET is not defined.");
