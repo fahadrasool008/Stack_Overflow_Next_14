@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
 const { Webhook } = require("svix");
 const { headers } = require("next/headers");
-const { WebhookEvent } = require("@clerk/nextjs/server");
 const {
   updateUser,
   createUser,
