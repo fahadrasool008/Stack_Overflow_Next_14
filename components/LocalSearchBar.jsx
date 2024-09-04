@@ -20,7 +20,7 @@ const LocalSearchBar = () => {
           <Input
             type="text"
             placeholder="Local search"
-            className="paragraph-regular no-focus placeholder background-light750_darkgradient caret-slate-500 shadow-none outline-none"
+            className="paragraph-regular no-focus placeholder caret- bg-transparent text-slate-500 caret-slate-500 shadow-none outline-none"
           />
         </div>
         <Filter
