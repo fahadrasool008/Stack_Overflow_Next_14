@@ -30,7 +30,7 @@ const AllQuestions = ({
       </div>
       <div className="flex-between mt-7 w-full flex-wrap gap-3">
         <Metric
-          imageUrl={`${author.picture ? author.picture : "/assets/icons/avatar.svg"}`}
+          imageUrl={author.picture}
           alt="author"
           title={author.name}
           value={`\u2022 asked ${TimeFormattor(createdAt ?? "2024-08-05T14:00:00Z")}`}
