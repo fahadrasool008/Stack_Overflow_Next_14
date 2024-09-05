@@ -23,7 +23,7 @@ const Metric = ({
       <p className={`${textStyle} flex items-center gap-1`}>
         <span className={`${textStyle}`}>{title}</span>{" "}
         <span
-          className={`small-regular line-clamp-1 ${isAuthor ? "max-sm:hidden text-dark400_light500" : ""}`}
+          className={`small-regular line-clamp-1 ${isAuthor ? "text-dark400_light500 max-sm:hidden" : ""}`}
         >
           {" "}
           {value}
