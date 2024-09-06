@@ -20,7 +20,6 @@ export async function POST(req) {
   const svix_signature = req.headers.get("svix-signature") ?? "";
 
   const body = await req.text();
-  console.log(body);
 
   const sivx = new Webhook(WEBHOOK_SECRET);
 
@@ -39,7 +38,6 @@ export async function POST(req) {
   const eventType = evt.type.toString();
 
   if (eventType === "user.created") {
-    console.log("user created.....");
     const { id, email_addresses, image_url, username, first_name, last_name } =
       evt.data;
 

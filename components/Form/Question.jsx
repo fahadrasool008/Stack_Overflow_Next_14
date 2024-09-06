@@ -81,7 +81,6 @@ const Question = ({ clerkId }) => {
         form.setValue("tags", [...field.value, inputVal]);
         inputTag.value = "";
         form.clearErrors("tags");
-        console.log(field.value);
       } else {
         form.trigger();
       }

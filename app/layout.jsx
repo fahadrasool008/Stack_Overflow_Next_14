@@ -20,11 +20,7 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
       <html lang="en">
         <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
-          {console.log("server redering")}
-          <ThemeProvider>
-            {children}
-            {console.log("server redering")}
-          </ThemeProvider>
+          <ThemeProvider>{children}</ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
