@@ -5,7 +5,7 @@ import Filter from "./filter";
 import { HomePageFilters } from "./FilterData";
 import HomeFilters from "./HomeFIlters";
 
-const LocalSearchBar = () => {
+const LocalSearchBar = ({ showHomeFilter = false, showTabFilter = false }) => {
   return (
     <>
       <div className="relative flex w-full max-w-[1030px] gap-2 max-sm:flex-col">
@@ -20,16 +20,16 @@ const LocalSearchBar = () => {
           <Input
             type="text"
             placeholder="Local search"
-            className="paragraph-regular no-focus placeholder caret- bg-transparent text-slate-500 caret-slate-500 shadow-none outline-none"
+            className="paragraph-regular no-focus placeholder  bg-transparent text-slate-500 caret-slate-500 shadow-none outline-none"
           />
         </div>
         <Filter
           filters={HomePageFilters}
-          contaienrClasses={"hidden  max-md:flex"}
+          contaienrClasses={`${showTabFilter ? "" : "hidden  max-md:flex"}`}
           otherClasses={"min-h-[56px] sm:min-w-[170px]"}
         />
       </div>
-      <HomeFilters />
+      {showHomeFilter ? <HomeFilters /> : null}
     </>
   );
 };

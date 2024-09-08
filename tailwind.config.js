@@ -16,6 +16,9 @@ module.exports = {
       },
     },
     extend: {
+      scale: {
+        101: "1.01",
+      },
       colors: {
         primary: {
           500: "#FF7000",
@@ -46,6 +49,8 @@ module.exports = {
       boxShadow: {
         "light-100":
           "0px 12px 20px 0px rgba(184, 184, 184, 0.03), 0px 6px 12px 0px rgba(184, 184, 184, 0.02), 0px 2px 4px 0px rgba(184,184,185,0.03)",
+        "light-101":
+          "0px 12px 20px 0px rgba(184, 184, 184, 0.2), 0px 6px 12px 0px rgba(184, 184, 184, 0.2), 0px 2px 4px 0px rgba(184,184,185,0.1), 0px -2px 4px 4px rgba(184,184,185,0.1)",
         "light-200": "10px 10px 20px 0px rgba(218, 213, 213, 0.10)",
         "light-300": "-10px 10px 20px 0px rgba(218, 213, 213, 0.10)",
         "dark-100": "0px 2px 10px 0px rgba(46, 52, 56, 0.10)",
