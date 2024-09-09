@@ -5,6 +5,8 @@ import LocalSearchBar from "../../../components/LocalSearchBar";
 import NoDataFound from "../../../components/No-Data-Found";
 import AllQuestions from "../../../components/AllQuestions";
 import { getQuestions } from "../../../lib/actions/user.actions";
+import createAnswer from "@/lib/actions/answer.actions";
+import { ObjectId } from "mongodb";
 
 const Home = async () => {
   const questions2 = await getQuestions();
@@ -24,11 +26,7 @@ const Home = async () => {
       <div className="mt-10 flex w-full flex-col gap-6">
         {questions2.length > 0 ? (
           questions2.map((item) => (
-            <Link
-              key={item._id}
-              href={`/question/${item._id}`}
-              legacyBehavior
-            >
+            <Link key={item._id} href={`/question/${item._id}`} legacyBehavior>
               <AllQuestions
                 _id={item._id}
                 title={item.title}

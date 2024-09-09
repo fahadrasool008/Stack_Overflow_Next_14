@@ -16,21 +16,31 @@ import { AnswerSchema } from "@/lib/Validations";
 import { useState } from "react";
 import FormEditor from "./Form/FormEditor";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
+import createAnswer from "@/lib/actions/answer.actions";
 
-const PostAnswer = () => {
+const PostAnswer = ({ author, question }) => {
   const [submitting, setSubmitting] = useState(false);
-  const questionMode = "Submit";
+  let pathname = usePathname();
   const form = useForm({
     resolver: zodResolver(AnswerSchema),
     defaultValues: {
       answer: "",
     },
   });
-  const answerHandler = (e) => {};
+
   async function onSubmit(values) {
     try {
       setSubmitting(true);
       console.log(values.answer);
+
+      let content = values.answer;
+      createAnswer({
+        content: content,
+        author: JSON.parse(author),
+        question: JSON.parse(question),
+        path: pathname,
+      });
     } catch (e) {
     } finally {
       setSubmitting(false);
@@ -42,10 +52,7 @@ const PostAnswer = () => {
         <p className="paragraph-semibold  max-xs:w-full text-left">
           Write your answer here
         </p>
-        <Button
-          onClick={answerHandler}
-          className="dark:dark-gradient  bg-light-750 px-5 py-5 items-center justify-center dark:border-none border-light-500/50 border-2 max-xs:w-full hover:opacity-90"
-        >
+        <Button className="dark:dark-gradient  bg-light-750 px-5 py-5 items-center justify-center dark:border-none border-light-500/50 border-2 max-xs:w-full hover:opacity-90">
           <Image
             src="/assets/icons/stars.svg"
             width={14}

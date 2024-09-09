@@ -15,10 +15,8 @@ import { getUserById } from "@/lib/actions/user.actions";
 
 const page = async ({ params }) => {
   const { userId } = auth();
+  let user = await getUserById({ userId });
   const result = await getQuestionById(params.id);
-  let user = await getUserById(userId);
-  console.log(userId);
-  console.log(user);
 
   return (
     <section className="flex w-full max-w-full flex-col ">
@@ -87,7 +85,10 @@ const page = async ({ params }) => {
         <Filter filters={HomePageFilters} />
       </div>
       <AnswerLayout />
-      <PostAnswer />
+      <PostAnswer
+        author={JSON.stringify(user._id)}
+        question={JSON.stringify(result._id)}
+      />
     </section>
   );
 };

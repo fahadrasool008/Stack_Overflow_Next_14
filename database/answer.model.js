@@ -1,8 +1,9 @@
-import { Schema } from "mongoose";
+import mongoose from "mongoose";
+const { Schema, model, models } = mongoose;
 
 const AnswerSchema = new Schema({
-  author: { type: Schema.Types.ObjectId, ref: "User", required: true },
-  question: { type: Schema.Types.ObjectId, ref: "Question", required: true },
+  author: { type: Schema.Types.ObjectId, ref: "User" },
+  question: { type: Schema.Types.ObjectId, ref: "Question" },
   content: { type: String, required: true },
   upvotes: [{ type: Schema.Types.ObjectId, ref: "User" }],
   downvotes: [{ type: Schema.Types.ObjectId, ref: "User" }],
