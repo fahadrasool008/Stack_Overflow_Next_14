@@ -5,8 +5,6 @@ import LocalSearchBar from "../../../components/LocalSearchBar";
 import NoDataFound from "../../../components/No-Data-Found";
 import AllQuestions from "../../../components/AllQuestions";
 import { getQuestions } from "../../../lib/actions/user.actions";
-import createAnswer from "@/lib/actions/answer.actions";
-import { ObjectId } from "mongodb";
 
 const Home = async () => {
   const questions2 = await getQuestions();

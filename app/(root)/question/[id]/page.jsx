@@ -15,7 +15,7 @@ import { getUserById } from "@/lib/actions/user.actions";
 
 const page = async ({ params }) => {
   const { userId } = auth();
-  let user = await getUserById({ userId });
+  const user = await getUserById({ userId });
   const result = await getQuestionById(params.id);
 
   return (

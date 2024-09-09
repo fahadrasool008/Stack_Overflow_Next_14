@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "./ui/button";
 import {
   Form,
@@ -7,13 +7,11 @@ import {
   FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "./ui/Form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AnswerSchema } from "@/lib/Validations";
-import { useState } from "react";
 import FormEditor from "./Form/FormEditor";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -21,7 +19,7 @@ import createAnswer from "@/lib/actions/answer.actions";
 
 const PostAnswer = ({ author, question }) => {
   const [submitting, setSubmitting] = useState(false);
-  let pathname = usePathname();
+  const pathname = usePathname();
   const form = useForm({
     resolver: zodResolver(AnswerSchema),
     defaultValues: {
@@ -34,7 +32,7 @@ const PostAnswer = ({ author, question }) => {
       setSubmitting(true);
       console.log(values.answer);
 
-      let content = values.answer;
+      const content = values.answer;
       createAnswer({
         content: content,
         author: JSON.parse(author),
