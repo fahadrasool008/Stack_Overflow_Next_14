@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import url("../styles/theme.css");
+@import url("../styles/prism.css");
 
 body {
   font-family: "Inter", sans-serif;
@@ -18,6 +19,9 @@ body {
   display: none;
 }
 @layer utilities {
+  code[class*="language-"] {
+    @apply max-sm:text-[13px];
+  }
   .flex-center {
     @apply flex justify-center items-center;
   }
@@ -94,8 +98,7 @@ body {
   .markdown a {
     color: #1da1f2;
   }
-  .markdown a,
-  code {
+  .markdown a {
     overflow-wrap: break-word;
     word-wrap: break-word;
     -ms-word-break: break-all;

@@ -24,17 +24,22 @@ const Home = async () => {
       <div className="mt-10 flex w-full flex-col gap-6">
         {questions2.length > 0 ? (
           questions2.map((item) => (
-            <AllQuestions
+            <Link
               key={item._id}
-              _id={item._id}
-              title={item.title}
-              author={item.author}
-              tags={item.tags}
-              upvotes={item.upvotes}
-              answers={item.answers}
-              createdAt={item.createdAt}
-              views={item.views}
-            />
+              href={`/question/${item._id}`}
+              legacyBehavior
+            >
+              <AllQuestions
+                _id={item._id}
+                title={item.title}
+                tags={item.tags}
+                author={item.author}
+                upvotes={item.upvotes}
+                answers={item.answers}
+                createdAt={item.createdAt}
+                views={item.views}
+              />
+            </Link>
           ))
         ) : (
           <NoDataFound

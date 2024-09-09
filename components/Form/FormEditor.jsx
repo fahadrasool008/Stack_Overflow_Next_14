@@ -1,14 +1,15 @@
 import React, { useRef } from "react";
 import { Editor } from "@tinymce/tinymce-react";
+import { useTheme } from "@/context/ThemeContext";
 
 const FormEditor = ({ field }) => {
   const editorRef = useRef(null);
+  const { mode } = useTheme();
   return (
     <>
       <Editor
         apiKey={process.env.NEXT_PUBLIC_TINY_MCE_KEY}
         onInit={(_evt, editor) => (editorRef.current = editor)}
-        initialValue=""
         onBlur={field.onBlur}
         onEditorChange={(content) => field.onChange(content)}
         init={{
@@ -38,8 +39,9 @@ const FormEditor = ({ field }) => {
             "alignright alignjustify | bullist numlist outdent indent | " +
             "removeformat | help",
           content_style:
-            "body { font-family:Helvetica,Arial,sans-serif; font-size:16px }",
-          skin: "oxide-dark",
+            "body { font-family:Inter,Helvetica,Arial,sans-serif; font-size:16px }",
+          skin: mode === "dark" ? "oxide-dark" : "oxide",
+          content_css: mode === "dark" ? "dark" : "light",
         }}
       />
     </>

@@ -14,7 +14,7 @@ const AllQuestions = ({
   createdAt,
 }) => {
   return (
-    <div className="background-light750_darkgradient flex w-full flex-col gap-0 rounded-xl px-10 py-8">
+    <div className="background-light750_darkgradient flex w-full flex-col gap-0 rounded-xl px-10 py-8 hover:cursor-pointer">
       <p className="small-regular text-dark400_light500 hidden max-sm:flex">
         {TimeFormattor(createdAt ?? "2024-08-05T14:00:00Z")}
       </p>
