@@ -31,7 +31,7 @@ const HtmlParser = ({ data }) => {
   }, [data]);
 
   return (
-    <div className="text-dark300_light900 flex flex-col w-full text-left">
+    <div className="text-dark300_light900 flex w-full flex-col text-left">
       {HTMLReactParser(data)}
     </div>
   );

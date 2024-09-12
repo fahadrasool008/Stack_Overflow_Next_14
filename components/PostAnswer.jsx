@@ -30,27 +30,27 @@ const PostAnswer = ({ author, question }) => {
   async function onSubmit(values) {
     try {
       setSubmitting(true);
-      console.log(values.answer);
-
       const content = values.answer;
-      createAnswer({
-        content: content,
-        author: JSON.parse(author),
-        question: JSON.parse(question),
+      await createAnswer({
+        content,
+        author,
+        question,
         path: pathname,
       });
+      form.setValue("answer", "");
     } catch (e) {
+      console.log(e);
     } finally {
       setSubmitting(false);
     }
   }
   return (
     <Form {...form}>
-      <div className="text-dark400_light800 mt-8 -mb-2 flex justify-between items-center max-xs:flex-col max-xs:gap-3 ">
-        <p className="paragraph-semibold  max-xs:w-full text-left">
+      <div className="text-dark400_light800 -mb-2 mt-8 flex items-center justify-between max-xs:flex-col max-xs:gap-3 ">
+        <p className="paragraph-semibold  text-left max-xs:w-full">
           Write your answer here
         </p>
-        <Button className="dark:dark-gradient  bg-light-750 px-5 py-5 items-center justify-center dark:border-none border-light-500/50 border-2 max-xs:w-full hover:opacity-90">
+        <Button className="dark:dark-gradient  items-center justify-center border-2 border-light-500/50 bg-light-750 p-5 hover:opacity-90 dark:border-none max-xs:w-full">
           <Image
             src="/assets/icons/stars.svg"
             width={14}
@@ -65,7 +65,7 @@ const PostAnswer = ({ author, question }) => {
       </div>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="mt-5 flex w-full flex-col gap-6 mb-10"
+        className="mb-10 mt-5 flex w-full flex-col gap-6"
       >
         <FormField
           control={form.control}
@@ -86,7 +86,7 @@ const PostAnswer = ({ author, question }) => {
 
         <Button
           type="submit"
-          className="primary-gradient paragraph-semibold mt-8 min-h-11 w-full max-w-28 max-xs:max-w-full self-end  transition-all duration-300  text-light-800 hover:opacity-90"
+          className="primary-gradient paragraph-semibold mt-8 min-h-11 w-full max-w-28 self-end text-light-800  transition-all duration-300  hover:opacity-90 max-xs:max-w-full"
           disabled={submitting}
         >
           {submitting ? "Submitting" : "Submit"}

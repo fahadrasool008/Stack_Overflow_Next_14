@@ -1,5 +1,4 @@
-import mongoose from "mongoose";
-const { Schema, model, models } = mongoose;
+import { model, Schema, models } from "mongoose";
 
 const AnswerSchema = new Schema({
   author: { type: Schema.Types.ObjectId, ref: "User" },
