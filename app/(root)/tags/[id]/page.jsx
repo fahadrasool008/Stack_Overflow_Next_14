@@ -1,17 +1,13 @@
-// import AllQuestions from "@/components/AllQuestions";
 import AllQuestions from "@/components/AllQuestions";
 import LocalSearchBar from "@/components/LocalSearchBar";
 import NoDataFound from "@/components/No-Data-Found";
-import { Button } from "@/components/ui/button";
-import { getSavedQuestions } from "@/lib/actions/questions.actions";
-import { auth } from "@clerk/nextjs/server";
+import { getTagQuestions } from "@/lib/actions/tags.actions";
 import Link from "next/link";
-
 import React from "react";
 
-const page = async () => {
-  const { userId } = auth();
-  const questions = await getSavedQuestions({ clerkId: userId });
+const page = async ({ params }) => {
+  const questions = await getTagQuestions({ tagId: params.id });
+  console.log(questions);
 
   return (
     <>

@@ -16,7 +16,7 @@ const AllQuestions = ({
   return (
     <div className="background-light750_darkgradient flex w-full flex-col gap-0 rounded-xl px-10 py-8 hover:cursor-pointer">
       <p className="small-regular text-dark400_light500 hidden max-sm:flex">
-        {TimeFormattor(createdAt ?? "2024-08-05T14:00:00Z")}
+        {TimeFormattor(createdAt)}
       </p>
       <h3 className="sm:h3-semibold base-semibold text-dark300_light900 line-clamp-1">
         {title}
@@ -31,7 +31,7 @@ const AllQuestions = ({
           imageUrl={author.picture}
           alt="author"
           title={author.name}
-          value={`\u2022 asked ${TimeFormattor(createdAt ?? "2024-08-05T14:00:00Z")}`}
+          value={`\u2022 asked ${TimeFormattor(createdAt)}`}
           textStyle="body-medium text-dark400_light900"
           isAuthor={true}
           href="/"
@@ -41,14 +41,14 @@ const AllQuestions = ({
             imageUrl="/assets/icons/upvote.svg"
             alt="upvote"
             title="Votes"
-            value={formatNumber(upvotes ?? 500)}
+            value={formatNumber(upvotes.length)}
             textStyle="small-medium text-dark400_light800"
           />
           <Metric
             imageUrl="/assets/icons/message.svg"
             alt="message"
             title="Answers"
-            value={formatNumber(20)}
+            value={formatNumber(answers.length)}
             textStyle="small-medium text-dark400_light800"
           />
           <Metric

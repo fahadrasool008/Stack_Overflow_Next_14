@@ -1,3 +1,4 @@
+"use server";
 import { model, models, Schema } from "mongoose";
 
 const QuestionSchema = new Schema({

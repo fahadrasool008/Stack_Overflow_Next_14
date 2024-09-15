@@ -1,12 +1,14 @@
 "use client";
 import { downVoteAnswer, upVoteAnswer } from "@/lib/actions/answer.actions";
+import { ViewQuestion } from "@/lib/actions/interaction.actions";
 import {
   downVoteQuestion,
   upVoteQuestion,
 } from "@/lib/actions/questions.actions";
 import { saveQuestion } from "@/lib/actions/user.actions";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+
 import React, { useEffect } from "react";
 
 const Votes = ({
@@ -21,6 +23,8 @@ const Votes = ({
   downvotes,
 }) => {
   const path = usePathname();
+  const router = useRouter();
+
   const handleVote = async (action) => {
     if (action === "upvote") {
       if (type === "question") {
@@ -68,7 +72,18 @@ const Votes = ({
     }
   };
 
-  useEffect(() => {}, [hasUpVoted, hasDownVoted, hasSaved]);
+  useEffect(() => {
+    console.log("q--id:\t", userId);
+
+    ViewQuestion({
+      userId: userId ? JSON.parse(userId) : undefined,
+      questionId: questionId ? JSON.parse(questionId) : undefined,
+      path,
+    });
+    return () => {
+      router.refresh();
+    };
+  }, [path, questionId, userId, router]);
   return (
     <div className="flex items-center gap-3">
       <div className="flex items-center gap-0.5">

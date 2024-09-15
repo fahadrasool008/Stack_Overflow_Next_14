@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
 const Metric = ({
   imageUrl,
@@ -15,6 +14,7 @@ const Metric = ({
   const Loader = ({ src, width, quality }) => {
     return `${src}?w=${width}&q=${quality || 75}`;
   };
+
   const MetricContent = (
     <div className="flex-center gap-1 ">
       <Image
