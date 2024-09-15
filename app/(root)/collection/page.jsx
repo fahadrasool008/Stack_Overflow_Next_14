@@ -2,7 +2,6 @@
 import AllQuestions from "@/components/AllQuestions";
 import LocalSearchBar from "@/components/LocalSearchBar";
 import NoDataFound from "@/components/No-Data-Found";
-import { Button } from "@/components/ui/button";
 import { getSavedQuestions } from "@/lib/actions/questions.actions";
 import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
