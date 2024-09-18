@@ -39,6 +39,7 @@ const PostAnswer = ({ author, question }) => {
       });
       form.setValue("answer", "");
     } catch (e) {
+      throw e;
       console.log(e);
     } finally {
       setSubmitting(false);

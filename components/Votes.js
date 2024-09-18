@@ -73,8 +73,6 @@ const Votes = ({
   };
 
   useEffect(() => {
-    console.log("q--id:\t", userId);
-
     ViewQuestion({
       userId: userId ? JSON.parse(userId) : undefined,
       questionId: questionId ? JSON.parse(questionId) : undefined,

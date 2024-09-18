@@ -14,7 +14,7 @@ import { themes } from "../constants/constants";
 const Theme = () => {
   const { mode, active, setActive, setMode } = useContext(ThemeContext);
   return (
-    <Menubar className="relative border-none bg-transparent shadow-none">
+    <Menubar className="relative border-none bg-transparent  shadow-none ">
       <MenubarMenu>
         <MenubarTrigger className="focus:bg-light-900 data-[state=open]:bg-light-900 dark:bg-dark-200 dark:data-[state-open]:bg-dark-200">
           {mode === "dark" ? (
@@ -35,7 +35,7 @@ const Theme = () => {
             />
           )}
         </MenubarTrigger>
-        <MenubarContent className="absolute -right-16 mt-2 min-w-[120px] rounded border py-2  dark:border-dark-400 dark:bg-dark-300">
+        <MenubarContent className="absolute -right-16 mt-2 min-w-[120px] rounded border bg-white  py-2 dark:border-dark-400 dark:bg-dark-300">
           {themes.map((item, index) => (
             <MenubarItem
               key={index}

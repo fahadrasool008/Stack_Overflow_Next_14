@@ -6,13 +6,15 @@ import Link from "next/link";
 import React from "react";
 
 const page = async ({ params }) => {
-  const questions = await getTagQuestions({ tagId: params.id });
-  console.log(questions);
+  const tag = await getTagQuestions({ tagId: params.id });
+  const questions = tag.questions;
 
   return (
     <>
       <div className="flex  w-full flex-col justify-start gap-2 !overflow-auto pb-1 pr-1 max-lg:mt-[36px] ">
-        <h1 className="h1-bold text-dark100_light900 mb-2">Saved Questions</h1>
+        <h1 className="h1-bold text-dark100_light900 mb-2">
+          Questions related to &apos; {tag.name} &apos;
+        </h1>
         <LocalSearchBar showTabFilter={true} />
       </div>
       <div className="text-dark400_light900 mt-8 flex flex-col-reverse justify-center gap-4 !overflow-auto max-lg:mt-[36px] sm:flex-row sm:items-center ">

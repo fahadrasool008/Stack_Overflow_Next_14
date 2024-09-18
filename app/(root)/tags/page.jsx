@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const page = async () => {
   const tags = await getAllTags();
-  console.log(tags);
+
   return (
     <>
       <div className="flex flex-col-reverse justify-between gap-4 !overflow-auto max-lg:mt-[36px] sm:flex-row sm:items-center ">

@@ -22,9 +22,10 @@ const AllQuestions = ({
         {title}
       </h3>
       <div className="mt-4 flex flex-wrap gap-3">
-        {tags.map((tag) => (
-          <RenderTag key={tag} _id={tag._id} name={tag.name.toUpperCase()} />
-        ))}
+        {tags &&
+          tags.map((tag) => (
+            <RenderTag key={tag} _id={tag._id} name={tag.name.toUpperCase()} />
+          ))}
       </div>
       <div className="flex-between mt-7 w-full flex-wrap gap-3">
         <Metric
@@ -37,27 +38,33 @@ const AllQuestions = ({
           href="/"
         />
         <div className="flex flex-wrap items-center justify-between gap-2">
-          <Metric
-            imageUrl="/assets/icons/upvote.svg"
-            alt="upvote"
-            title="Votes"
-            value={formatNumber(upvotes.length)}
-            textStyle="small-medium text-dark400_light800"
-          />
-          <Metric
-            imageUrl="/assets/icons/message.svg"
-            alt="message"
-            title="Answers"
-            value={formatNumber(answers.length)}
-            textStyle="small-medium text-dark400_light800"
-          />
-          <Metric
-            imageUrl="/assets/icons/eye.svg"
-            alt="author"
-            title="Views"
-            value={formatNumber(views)}
-            textStyle="small-medium text-dark400_light800"
-          />
+          {upvotes && (
+            <Metric
+              imageUrl="/assets/icons/upvote.svg"
+              alt="upvote"
+              title="Votes"
+              value={formatNumber(upvotes.length)}
+              textStyle="small-medium text-dark400_light800"
+            />
+          )}
+          {answers && (
+            <Metric
+              imageUrl="/assets/icons/message.svg"
+              alt="message"
+              title="Answers"
+              value={formatNumber(answers.length)}
+              textStyle="small-medium text-dark400_light800"
+            />
+          )}
+          {views && (
+            <Metric
+              imageUrl="/assets/icons/eye.svg"
+              alt="author"
+              title="Views"
+              value={formatNumber(views)}
+              textStyle="small-medium text-dark400_light800"
+            />
+          )}
         </div>
       </div>
     </div>

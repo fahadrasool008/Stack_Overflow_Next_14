@@ -6,7 +6,7 @@ import NoDataFound from "../../../components/No-Data-Found";
 
 const page = async () => {
   const users = await getAllUsers();
-  console.log(users);
+
   return (
     <>
       <div className="flex flex-col-reverse justify-between gap-4 !overflow-auto max-lg:mt-[36px] sm:flex-row sm:items-center ">
