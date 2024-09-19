@@ -1,11 +1,12 @@
 import React from "react";
 import LocalSearchBar from "../../../components/LocalSearchBar";
-import TagCard from "../../../components/TagCard";
 import { getAllUsers } from "../../../lib/actions/user.actions";
 import NoDataFound from "../../../components/No-Data-Found";
+import UserCard from "@/components/TagCard";
 
 const page = async () => {
   const users = await getAllUsers();
+  console.log(users);
 
   return (
     <>
@@ -17,7 +18,7 @@ const page = async () => {
       </div>
       <section className="mt-12 flex w-full flex-wrap">
         {users ? (
-          <TagCard />
+          users.map((user) => <UserCard key={user._id} user={user} />)
         ) : (
           <div className="mt-[-50px] size-full">
             <NoDataFound

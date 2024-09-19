@@ -16,7 +16,7 @@ const InfoLink = ({ source, title, href }) => {
       {href ? (
         <Link href={href}>
           {" "}
-          <p className="paragraph-medium text-blue-500">{title}</p>
+          <p className="paragraph-medium text-light-500">{title}</p>
         </Link>
       ) : (
         <p className="paragraph-medium text-dark400_light800">{title}</p>
